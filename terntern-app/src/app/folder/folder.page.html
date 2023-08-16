@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Cat Listing</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-card color="light">
+      <div class="search-bar">
+        <ion-searchbar (ionChange)="onSearchChange($event)" placeholder="Type to search"></ion-searchbar>
+      </div>
+      <div class="filter-bar"> 
+        <span class="filtered-by-text">Filtered By</span>
+        <ion-select class="custom-select" [(ngModel)]="selectedFilter" (ionChange)="filterDisplayedBreeds()">
+          <ion-select-option value="breed">Breed</ion-select-option>
+          <ion-select-option value="country">Country</ion-select-option>
+          <ion-select-option value="origin">Origin</ion-select-option>
+          <ion-select-option value="coat">Coat</ion-select-option>
+          <ion-select-option value="pattern">Pattern</ion-select-option>
+        </ion-select>
+      </div>
+  
+    </ion-card>
+  
+
+  <div class="List">
+  <ion-card>
+  <ion-grid>
+    <!-- Table Header -->
+    <div class="table-responsive">
+      <ion-row class="table-header" >
+        <ion-col ><b>Breed</b></ion-col>
+        <ion-col ><b>Country</b></ion-col>
+        <ion-col ><b>Origin</b></ion-col>
+        <ion-col ><b>Coat</b></ion-col>
+        <ion-col ><b>Pattern</b></ion-col>
+      </ion-row>
+
+      <!-- Table Rows using *ngFor -->
+      <ion-row *ngFor="let breed of breeds; let i = index" [style.background-color]="i % 2 === 0 ? '#fffff' : '#d8e9ed'">
+        <ion-col >{{ breed.breed }}</ion-col>
+        <ion-col >{{ breed.country }}</ion-col>
+        <ion-col >{{ breed.origin }}</ion-col>
+        <ion-col >{{ breed.coat }}</ion-col>
+        <ion-col >{{ breed.pattern }}</ion-col>
+      </ion-row>
+  </div>
+  </ion-grid>
+</ion-card>
+<div class="button-container">
+ 
+  <ion-button *ngIf="currentPage > 1" (click)="goToFirstPage()" expand="full">
+    Go to First Page
+  </ion-button>
+  <ion-button (click)="loadNextPage()" [hidden]="breeds.length < pageSize"> Next Page</ion-button>
+</div>
+</div>
+</div>
+</ion-content>
