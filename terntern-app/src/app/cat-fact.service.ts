@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CatBreed } from './models/cat-breed.model'; // Update the path
+import { CatBreed } from './models/cat-breed.model'; 
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class CatFactService {
 
   getBreeds(page: number, pageSize: number): Observable<CatBreed[]> {
     const url = `${this.baseUrl}?page=${page}&per_page=${pageSize}`;
-    return this.http.get<CatBreed[]>(url); // Specify the type of response
+    return this.http.get<CatBreed[]>(url); 
   }
   
 }
